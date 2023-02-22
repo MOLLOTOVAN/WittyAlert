@@ -1,0 +1,17 @@
+<pre><?php
+include "ScarletsQuery.php";
+
+// Load the HTML content and parse it
+$html = file_get_contents('https://www.lipsum.com');
+$dom = Scarlets\Library\MarkupLanguage::parseText($html);
+
+// Select meta tag on the HTML header
+$description = $dom->selector('head meta[name="description"]')[0];
+
+// Get 'content' attribute value from meta tag
+print_r($description->attr('content'));
+
+$description = $dom->selector('#Content p');
+
+// Get element array
+print_r($description->view);
